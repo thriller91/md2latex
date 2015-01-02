@@ -181,24 +181,7 @@ class MarkdownToLatexConverter(LatexRenderer):
         title = self.parse_meta(meta)
         body = self.parse_body(body)
 
-        template = '''\\documentclass{article}
-
-%s
-
-%s
-\\begin{document}
-
-%s
-
-\\maketitle
-%s
-
-\\end{document}'''
-
-        return template % (self.resolve_packages(),
-                           self.resolve_commands(),
-                           title,
-                           body)
+        return body
 
     def parse_meta(self, meta):
         md = mistune.Markdown(renderer=self.meta_renderer)
@@ -240,7 +223,7 @@ class MarkdownToLatexConverter(LatexRenderer):
         if self.use_block_quote:
             return r"""
 \newenvironment{blockquote}{%
-  \par%
+  \par%hoho!
   \medskip
   \leftskip=4em\rightskip=2em%
   \noindent\ignorespaces}{%
